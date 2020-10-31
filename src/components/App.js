@@ -43,7 +43,7 @@ function App()
 	return (
 	<div id="main">
 		<textarea rows="3" id="task" onChange={handleChange} value={text}/>
-		<button id="btn" onClick={handleAdd} disabled={text.length == 0}>Add</button>
+		<button id="btn" onClick={handleAdd} >Add</button>
 
 		{tasks.map((task, index)=>(
 			<div key={index} className="list">
@@ -57,7 +57,7 @@ function App()
 					</>) : (
 						<>
 							<textarea onChange={handleEditChange} className="editTask" value={editText}/>
-							<button className="saveTask" onClick={()=>handleSaveTask(index)} disabled={editText.length == 0}>Save Task</button>
+							<button className="saveTask" onClick={()=>handleSaveTask(index)} >Save Task</button>
 						</>
 					)
 
