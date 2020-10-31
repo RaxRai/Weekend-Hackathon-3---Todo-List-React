@@ -43,7 +43,7 @@ function App()
 		<button id="btn" onClick={handleAdd}>Add</button>
 
 		{tasks.map((task, index)=>(
-			<div key={index}>
+			<div key={index} className="list">
 			<p id={index}>{task.name}</p>
 			
 			{!task.edit? (
