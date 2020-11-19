@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./../styles/App.css";
 
-function App() 
+function App()
 {
 	const [ tasks, setTasks] = useState([]);
 	const [text , setText] = useState("");
@@ -13,23 +13,24 @@ function App()
 		setEditText(e.target.value);
 	}
 	const handleSaveTask=(index)=>{
-		if(editText === "") return;
+		let editTextCopy = editText.trim()
+		if(editText === "" || editTextCopy === "") return;
 		let tasksCopy = [...tasks];
-		tasksCopy[index].name = editText;
+		tasksCopy[index].name = editTextCopy;
 		tasksCopy[index].edit = false;
 		setTasks(tasksCopy);
 		setEditText("");
 	}
 	const handleAdd =()=>{
-		if(text === "") return;
+		if(text.trim() === "") return;
 		let tasksCopy = [...tasks];
-		tasksCopy.push({ name: text, edit: false});
+		tasksCopy.push({ name: text.trim(), edit: false});
 		setTasks(tasksCopy);
 		setText("");
 	}
 	const handleEdit=(index)=>{
 		let tasksCopy = [...tasks];
-		tasksCopy[index].edit = true; 
+		tasksCopy[index].edit = true;
 		setTasks(tasksCopy);
 
 	}
@@ -39,7 +40,7 @@ function App()
 		tasksCopy.splice(index,1);
 		setTasks(tasksCopy);
 	}
-	
+
 	return (
 	<div id="main">
 		<textarea rows="3" id="task" onChange={handleChange} value={text}/>
@@ -48,12 +49,12 @@ function App()
 		{tasks.map((task, index)=>(
 			<div key={index} className="list">
 				<div id={index}>{task.name}</div>
-				
+
 				{!task.edit? (
 					<>
 					<button className="edit" onClick={()=>handleEdit(index)}>Edit</button>
 					<button className="delete" onClick={()=>handleDelete(index)}>Delete</button>
-			
+
 					</>) : (
 						<>
 							<textarea onChange={handleEditChange} className="editTask" value={editText}/>
